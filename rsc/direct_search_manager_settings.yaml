@@ -1,0 +1,30 @@
+# For 1 ptu config per pose: fovH=60; fovV=70
+fovH: 15 # default=15
+fovV: 10 # default=10
+clearVision: 30
+
+# The mode defining which poses to take. 1: grid_manager, 2: recording_manager, 3: grid_initialisation
+directSearchMode: 2
+# The disctance function to use. 1: GetDistance from next_best_view (accurate, slow), 2: euclidean distance (approximative, fast)
+# If /nbv/useGlobalPlanner == false, nbv calculates distance with euclidean distance -> service call is just overhead with no improve
+distanceFunc: 2
+
+# If true the poses will be reordered by nbv, so that poses which have a higher chance to detect an object will be searched first
+reorderPosesByNBV: true
+# If the poses of the robot_states should be reordered with TSP (nearest_neighbour and two_opt)
+reorderPosesByTSP: true
+
+# The threshold when two positions of viewcenter_poses will be seen as approx_equale for filtering already seen viewports
+viewCenterPositionDistanceThreshold: 0.12   # The threshold for orientation will be /nbv/mHypothesisUpdaterAngleThreshold
+
+# Remove all robot_states which have not at least this number of normals deleted while the poses were recorded
+filterMinimumNumberOfDeletedNormals: 1
+# Remove all robot_states which the robot can not reach
+filterIsPositionAllowed: true
+# Concatenate robot_poses which are approx_equale to one with multiple PTU_tuples
+concatApproxEqualsPoses: true
+
+# The threshold when two positions of robot poses will be seen as approx_equale for concatenating two robot poses
+concatRobotPosePositionDistanceThreshold: 0.10
+# The threshold when two orientations (in rad) of robot poses will be seen as approx_equale for concatenating two robot poses
+concatRobotPoseOrientationRadDistanceThreshold: 0.1745 # ~10°

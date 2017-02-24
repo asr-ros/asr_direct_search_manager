@@ -1,0 +1,18 @@
+#goal definition
+string command
+asr_msgs/AsrTypeAndId[] searchedObjectTypesAndIds
+---
+#result definition
+geometry_msgs/Pose goalRobotPose
+geometry_msgs/Pose goalCameraPose
+int32 pan
+int32 tilt
+int32 remainingPTUPoses
+int32 remainingRobotPoses
+float32 remainingPosesDistances
+bool isSameRobotPoseAsBefore
+bool isNoPoseLeft
+bool arePosesFromDemonstrationLeft
+asr_msgs/AsrTypeAndId[] filteredSearchedObjectTypesAndIds
+---
+#feedback definition
