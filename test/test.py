@@ -31,7 +31,7 @@ import sensor_msgs.msg
 import math
 import signal
 import subprocess
-from direct_search_manager.msg import *
+from asr_direct_search_manager.msg import *
 import geometry_msgs.msg
 
 if __name__ == '__main__':
@@ -41,9 +41,9 @@ if __name__ == '__main__':
         remainingRobotPoses = 10
         while remainingRobotPoses > 0 :
             rospy.loginfo('GetGoalCameraPose action server call')
-            client = actionlib.SimpleActionClient('direct_search_manager', direct_search_manager.msg.directSearchAction)
+            client = actionlib.SimpleActionClient('direct_search_manager', asr_direct_search_manager.msg.directSearchAction)
             client.wait_for_server()
-            goal = direct_search_manager.msg.gridGoal(command="GetGoalCameraPose", searchedObjectTypes=["Smacks"])
+            goal = asr_direct_search_manager.msg.gridGoal(command="GetGoalCameraPose", searchedObjectTypes=["Smacks"])
             client.send_goal(goal)
             client.wait_for_result()
             result = client.get_result()
