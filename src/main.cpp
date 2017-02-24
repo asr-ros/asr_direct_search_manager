@@ -21,10 +21,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include <actionlib/server/simple_action_server.h>
 
 #include <geometry_msgs/Pose.h>
-#include <direct_search_manager/directSearchAction.h>
+#include <asr_direct_search_manager/directSearchAction.h>
 #include <dynamic_reconfigure/server.h>
 
-#include <direct_search_manager/DynamicParametersConfig.h>
+#include <asr_direct_search_manager/DynamicParametersConfig.h>
 
 #include "direct_search_handler.hpp"
 #include "grid_initialisation.hpp"
@@ -41,10 +41,10 @@ private:
     boost::mutex mtx_;
     ros::NodeHandle nh_;
     // NodeHandle instance must be created before this line. Otherwise strange error may occur.
-    actionlib::SimpleActionServer<direct_search_manager::directSearchAction> as_;
+    actionlib::SimpleActionServer<asr_direct_search_manager::directSearchAction> as_;
     // create messages that are used to published feedback/result
-    direct_search_manager::directSearchFeedback feedback_;
-    direct_search_manager::directSearchResult result_;
+    asr_direct_search_manager::directSearchFeedback feedback_;
+    asr_direct_search_manager::directSearchResult result_;
     DirectSearchHandlerPtr directSearchHandlerPtr;
 
     dynamic_reconfigure::Server<direct_search_manager::DynamicParametersConfig> mDynamicReconfigServer;
@@ -163,7 +163,7 @@ public:
         return true;
     }
 
-    void executeCB(const direct_search_manager::directSearchGoalConstPtr &goal) {
+    void executeCB(const asr_direct_search_manager::directSearchGoalConstPtr &goal) {
         ROS_INFO_STREAM("Received command: " << goal->command);
         boost::lock_guard<boost::mutex> guard(mtx_);
 

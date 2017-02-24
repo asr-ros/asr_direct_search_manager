@@ -18,7 +18,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #pragma once
 
 #include "filter/filter_basic.hpp"
-#include "robot_model_services/IsPositionAllowed.h"
+#include "asr_robot_model_services/IsPositionAllowed.h"
 
 namespace directSearchWS {
 
@@ -33,7 +33,7 @@ private:
 public:
     FilterIsPositionAllowed(const RobotStatePtrVecPtr &posesToExplorePtr) : FilterBasic(posesToExplorePtr), deleteCount(0), wasSuccessful(true) {
         ros::NodeHandle n(ros::this_node::getName());
-        isPositionAllowedServiceClient = n.serviceClient<robot_model_services::IsPositionAllowed>("/asr_robot_model_services/IsPositionAllowed");
+        isPositionAllowedServiceClient = n.serviceClient<asr_robot_model_services::IsPositionAllowed>("/asr_robot_model_services/IsPositionAllowed");
     }
 
     virtual ~FilterIsPositionAllowed() { }
@@ -52,7 +52,7 @@ public:
 
     bool shouldPtuTupleBeDeleted(const RobotStatePtrVec::iterator &posesToExploreIter, const PtuTuplePtrVec::iterator &ptuTuplePtrIter) {
         bool shouldDelete = false;
-        robot_model_services::IsPositionAllowed isPositionAllowedCall;
+        asr_robot_model_services::IsPositionAllowed isPositionAllowedCall;
         isPositionAllowedCall.request.targetPosition = posesToExploreIter->get()->getRobotPosePtr()->position;
         if (isPositionAllowedServiceClient.call(isPositionAllowedCall)) {
             shouldDelete = !isPositionAllowedCall.response.isAllowed;

@@ -22,9 +22,9 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include <boost/shared_ptr.hpp>
 #include <eigen3/Eigen/Geometry>
 
-#include "robot_model_services/GetDistance.h"
-#include "robot_model_services/GetPose.h"
-#include "robot_model_services/RobotStateMessage.h"
+#include "asr_robot_model_services/GetDistance.h"
+#include "asr_robot_model_services/GetPose.h"
+#include "asr_robot_model_services/RobotStateMessage.h"
 
 #define RAD_TO_DEG 180.0 / M_PI
 #define DEG_TO_RAD M_PI / 180.0

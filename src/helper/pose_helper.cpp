@@ -68,14 +68,14 @@ T PoseHelper::waitForParam(ros::NodeHandle n, std::string param) {
 
 PoseHelper::PoseHelper() {
     ros::NodeHandle n(ros::this_node::getName());
-    getDistanceServiceClient = n.serviceClient<robot_model_services::GetDistance>("/asr_robot_model_services/GetDistance");
-    getRobotPoseServiceClient = n.serviceClient<robot_model_services::GetPose>("/asr_robot_model_services/GetRobotPose");
-    getCameraPoseServiceClient = n.serviceClient<robot_model_services::GetPose>("/asr_robot_model_services/GetCameraPose");
+    getDistanceServiceClient = n.serviceClient<asr_robot_model_services::GetDistance>("/asr_robot_model_services/GetDistance");
+    getRobotPoseServiceClient = n.serviceClient<asr_robot_model_services::GetPose>("/asr_robot_model_services/GetRobotPose");
+    getCameraPoseServiceClient = n.serviceClient<asr_robot_model_services::GetPose>("/asr_robot_model_services/GetCameraPose");
 }
 
 
 double PoseHelper::calcDistPositionWithNBV(const geometry_msgs::Pose &pose1, const geometry_msgs::Pose &pose2) {
-    robot_model_services::GetDistance srv;
+    asr_robot_model_services::GetDistance srv;
     srv.request.sourcePosition.x = pose1.position.x;
     srv.request.sourcePosition.y = pose1.position.y;
     srv.request.sourcePosition.z = pose1.position.z;
@@ -113,7 +113,7 @@ Eigen::Vector3d PoseHelper::calculateViewCenterPoint(const geometry_msgs::Pose &
 }
 
 geometry_msgs::Pose PoseHelper::getCurrentRobotPose() {
-    robot_model_services::GetPose srv;
+    asr_robot_model_services::GetPose srv;
     if (getRobotPoseServiceClient.call(srv)) {
         ROS_DEBUG_STREAM("CurrentRobotPose:\n" << srv.response.pose);
         return srv.response.pose;
@@ -124,7 +124,7 @@ geometry_msgs::Pose PoseHelper::getCurrentRobotPose() {
 }
 
 geometry_msgs::Pose PoseHelper::getCurrentCameraPose() {
-    robot_model_services::GetPose srv;
+    asr_robot_model_services::GetPose srv;
     if (getCameraPoseServiceClient.call(srv)) {
         ROS_DEBUG_STREAM("CurrentCameraPose:\n" << srv.response.pose);
         return srv.response.pose;
