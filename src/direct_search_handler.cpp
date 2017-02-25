@@ -172,10 +172,10 @@ void checkParametersFromOtherNode() {
 
     checkParameterFromOtherNode<std::string>(nh, "rp_ism_node", "dbfilename");
 
-    checkParameterFromOtherNode<double>(nh, "ptu_driver", "pan_min_angle");
-    checkParameterFromOtherNode<double>(nh, "ptu_driver", "pan_max_angle");
-    checkParameterFromOtherNode<double>(nh, "ptu_driver", "tilt_min_angle");
-    checkParameterFromOtherNode<double>(nh, "ptu_driver", "tilt_max_angle");
+    checkParameterFromOtherNode<double>(nh, "asr_flir_ptu_driver", "pan_min_angle");
+    checkParameterFromOtherNode<double>(nh, "asr_flir_ptu_driver", "pan_max_angle");
+    checkParameterFromOtherNode<double>(nh, "asr_flir_ptu_driver", "tilt_min_angle");
+    checkParameterFromOtherNode<double>(nh, "asr_flir_ptu_driver", "tilt_max_angle");
 }
 
 template <typename T>

@@ -23,7 +23,7 @@ DirectSearchManager::DirectSearchManager(): DirectSearchHandler(), currentPan(0.
     ros::NodeHandle n(ros::this_node::getName());
     getViewportListServiceClient = n.serviceClient<world_model::GetViewportList>("/env/world_model/get_viewport_list");
 
-    ptuDriverStateSubscriber = n.subscribe("/ptu_driver/state", 1000, &DirectSearchManager::ptuDriverStateCallback, this);
+    ptuDriverStateSubscriber = n.subscribe("/asr_flir_ptu_driver/state", 1000, &DirectSearchManager::ptuDriverStateCallback, this);
     setInitRobotStateServiceClient = n.serviceClient<next_best_view::SetInitRobotState>("/nbv/set_init_robot_state");
     setAttributedPointCloudServiceClient = n.serviceClient<next_best_view::SetAttributedPointCloud>("/nbv/set_point_cloud");
     rateViewportsServiceClient = n.serviceClient<next_best_view::RateViewports>("/nbv/rate_viewports");
