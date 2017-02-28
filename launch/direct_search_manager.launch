@@ -1,9 +1,9 @@
 <launch>
     <env name="ROSCONSOLE_CONFIG_FILE" value="$(find asr_direct_search_manager)/log/rosconsole.config" />
-    <node pkg="asr_direct_search_manager" type="direct_search_manager" name="direct_search_manager" output="screen">
+    <node pkg="asr_direct_search_manager" type="asr_direct_search_manager" name="direct_search_manager" output="screen">
         <rosparam command="load" file="$(find asr_direct_search_manager)/rsc/direct_search_manager_settings.yaml" />
         <!-- Needed to get the pan_min_angle, pan_max_angle, tilt_min_angle and tilt_max_angle-->
-        <rosparam file="$(find ptu_driver)/rsc/ptu_properties.yaml"/>
+        <rosparam file="$(find asr_flir_ptu_driver)/launch/ptu_properties.yaml"/>
         <!-- Needed to get the dbfilename -->
         <rosparam file="$(find recognizer_prediction_ism)/launch/helpers/scene_recognition.yaml"/>
         <param name="gridFilePath" value="$(find asr_direct_search_manager)/rsc/config.xml"/>
