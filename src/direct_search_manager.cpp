@@ -21,7 +21,7 @@ namespace directSearchWS {
 
 DirectSearchManager::DirectSearchManager(): DirectSearchHandler(), currentPan(0.0), currentTilt(0.0), needSortByNBV(true), lastSearchedObjectTypes() {
     ros::NodeHandle n(ros::this_node::getName());
-    getViewportListServiceClient = n.serviceClient<world_model::GetViewportList>("/env/world_model/get_viewport_list");
+    getViewportListServiceClient = n.serviceClient<asr_world_model::GetViewportList>("/env/asr_world_model/get_viewport_list");
 
     ptuDriverStateSubscriber = n.subscribe("/asr_flir_ptu_driver/state", 1000, &DirectSearchManager::ptuDriverStateCallback, this);
     setInitRobotStateServiceClient = n.serviceClient<next_best_view::SetInitRobotState>("/nbv/set_init_robot_state");
@@ -155,7 +155,7 @@ bool DirectSearchManager::getNextRobotState(const SearchedObjectTypesAndIds &sea
 }
 
 bool DirectSearchManager::getViewportsFromWorldModel(std::vector<asr_msgs::AsrViewport> &viewports) {
-    world_model::GetViewportList getViewportServiceCall;
+    asr_world_model::GetViewportList getViewportServiceCall;
     getViewportServiceCall.request.object_type = "all";
     bool success = getViewportListServiceClient.call(getViewportServiceCall);
     viewports = getViewportServiceCall.response.viewport_list;
