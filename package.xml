@@ -2,7 +2,13 @@
 <package>
   <name>asr_direct_search_manager</name>
   <version>1.0.0</version>
-  <description>The package contains different modes to manage the direct search</description>
+  <description>
+    This package can be used to generate and manage the poses for the direct
+    search. The direct search is used as a opening procedure for the Objectsearch.
+    The poses will be generated to cover the current map.
+    There are different modes to generate the poses. One is based on a grid and a
+    second on a recording of the "cropbox record" mode in the asr_state_machine.
+  </description>
   <author>Borella Jocelyn, Karrenbauer Oliver, Meißner Pascal</author>
   <maintainer email="asr-ros@lists.kit.edu">Pascal Meißner</maintainer>
   <license>BSD</license>
