@@ -31,17 +31,17 @@ import sensor_msgs.msg
 import math
 import signal
 import subprocess
-from asr_direct_search_manager.msg import *
+from asr_direct_search_manager.msg import asr_direct_search_manager
 import geometry_msgs.msg
 
 if __name__ == '__main__':
     # register closing callback
     try:
-        rospy.init_node('test_direct_search_manager')
+        rospy.init_node('test_asr_direct_search_manager')
         remainingRobotPoses = 10
         while remainingRobotPoses > 0 :
             rospy.loginfo('GetGoalCameraPose action server call')
-            client = actionlib.SimpleActionClient('direct_search_manager', asr_direct_search_manager.msg.directSearchAction)
+            client = actionlib.SimpleActionClient('asr_direct_search_manager', asr_direct_search_manager.msg.directSearchAction)
             client.wait_for_server()
             goal = asr_direct_search_manager.msg.gridGoal(command="GetGoalCameraPose", searchedObjectTypes=["Smacks"])
             client.send_goal(goal)

@@ -47,7 +47,7 @@ private:
     asr_direct_search_manager::directSearchResult result_;
     DirectSearchHandlerPtr directSearchHandlerPtr;
 
-    dynamic_reconfigure::Server<direct_search_manager::DynamicParametersConfig> mDynamicReconfigServer;
+    dynamic_reconfigure::Server<asr_direct_search_manager::DynamicParametersConfig> mDynamicReconfigServer;
 
     void initSearchMode() {
         int directSearchMode;
@@ -79,7 +79,7 @@ private:
     }
 
 
-    void dynamicReconfigureCallback(direct_search_manager::DynamicParametersConfig &config, uint32_t level) {
+    void dynamicReconfigureCallback(asr_direct_search_manager::DynamicParametersConfig &config, uint32_t level) {
         ROS_INFO_STREAM("Dynamic reconfigure called with level: " << level);
         boost::lock_guard<boost::mutex> guard(mtx_);
 
@@ -119,7 +119,7 @@ public:
 
         ROS_INFO_STREAM("Begin of initialization");
 
-        dynamic_reconfigure::Server<direct_search_manager::DynamicParametersConfig>::CallbackType f = boost::bind(&directSearchAction::dynamicReconfigureCallback, this, _1, _2);
+        dynamic_reconfigure::Server<asr_direct_search_manager::DynamicParametersConfig>::CallbackType f = boost::bind(&directSearchAction::dynamicReconfigureCallback, this, _1, _2);
         // setCallback calls the callback at first start
         mDynamicReconfigServer.setCallback(f);
 
@@ -194,10 +194,10 @@ public:
 }
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "direct_search_manager");
+    ros::init(argc, argv, "asr_direct_search_manager");
     ros::start();
 
-    directSearchWS::directSearchAction direct_search_manager;
+    directSearchWS::directSearchAction asr_direct_search_manager;
     ros::spin();
 
     return 0;
