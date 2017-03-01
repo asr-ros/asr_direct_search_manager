@@ -25,7 +25,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <eigen3/Eigen/Geometry>
 
-#include "next_best_view/GetDistance.h"
+#include "asr_robot_model_services/GetDistance.h"
 
 #define EPSILON 0.001
 
@@ -152,7 +152,7 @@ TEST_F(PoseHelperSetup, CheckViewCenterPointsAreApproxEquale) {
 }
 
 
-bool getDistance(next_best_view::GetDistance::Request &req, next_best_view::GetDistance::Response &res) {
+bool getDistance(asr_robot_model_services::GetDistance::Request &req, asr_robot_model_services::GetDistance::Response &res) {
     return true;
 }
 
