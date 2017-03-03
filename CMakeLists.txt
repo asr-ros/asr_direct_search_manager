@@ -28,7 +28,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   asr_rapidxml
   asr_robot_model_services
-  next_best_view
+  asr_next_best_view
   asr_lib_ism
   dynamic_reconfigure
 )

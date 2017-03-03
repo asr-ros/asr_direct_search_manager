@@ -20,7 +20,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include <boost/shared_ptr.hpp>
 #include "ros/ros.h"
 #include <geometry_msgs/Pose.h>
-#include <next_best_view/RatedViewport.h>
+#include <asr_next_best_view/RatedViewport.h>
 
 namespace directSearchWS {
 
@@ -35,13 +35,13 @@ private:
     PosePtr cameraPosePtr;
     int deactivated_object_normals_count;
     SearchedObjectTypes already_searched_object_types;
-    next_best_view::RatedViewport ratedViewport;
+    asr_next_best_view::RatedViewport ratedViewport;
 
 public:
     PtuTuple(int pan, int tilt, PosePtr cameraPosePtr);
     PtuTuple(int pan, int tilt, PosePtr cameraPosePtr, int deactivated_object_normals_count);
     PtuTuple(int pan, int tilt, PosePtr cameraPosePtr, int deactivated_object_normals_count, SearchedObjectTypes already_searched_object_types);
-    PtuTuple(int pan, int tilt, PosePtr cameraPosePtr, int deactivated_object_normals_count, SearchedObjectTypes already_searched_object_types, next_best_view::RatedViewport ratedViewport);
+    PtuTuple(int pan, int tilt, PosePtr cameraPosePtr, int deactivated_object_normals_count, SearchedObjectTypes already_searched_object_types, asr_next_best_view::RatedViewport ratedViewport);
 
     //Getter
     int getPan() const;
@@ -60,9 +60,9 @@ public:
 
     int getDeactivatedObjectNormalsCount() const;
 
-    void setRatedViewport(const next_best_view::RatedViewport &newRatedViewport);
+    void setRatedViewport(const asr_next_best_view::RatedViewport &newRatedViewport);
 
-    next_best_view::RatedViewport getRatedViewport() const;
+    asr_next_best_view::RatedViewport getRatedViewport() const;
 
 };
 

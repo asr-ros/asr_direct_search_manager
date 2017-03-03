@@ -22,10 +22,10 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include "asr_msgs/AsrViewport.h"
 
 #include <sensor_msgs/JointState.h>
-#include <next_best_view/RobotStateMessage.h>
-#include <next_best_view/SetInitRobotState.h>
-#include <next_best_view/SetAttributedPointCloud.h>
-#include <next_best_view/RateViewports.h>
+#include <asr_next_best_view/RobotStateMessage.h>
+#include <asr_next_best_view/SetInitRobotState.h>
+#include <asr_next_best_view/SetAttributedPointCloud.h>
+#include <asr_next_best_view/RateViewports.h>
 
 #include "filter/filter_basic.hpp"
 #include "filter/filter_poses_depending_on_already_found_object_types.hpp"

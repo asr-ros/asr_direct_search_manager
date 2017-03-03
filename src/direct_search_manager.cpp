@@ -24,9 +24,9 @@ DirectSearchManager::DirectSearchManager(): DirectSearchHandler(), currentPan(0.
     getViewportListServiceClient = n.serviceClient<asr_world_model::GetViewportList>("/env/asr_world_model/get_viewport_list");
 
     ptuDriverStateSubscriber = n.subscribe("/asr_flir_ptu_driver/state", 1000, &DirectSearchManager::ptuDriverStateCallback, this);
-    setInitRobotStateServiceClient = n.serviceClient<next_best_view::SetInitRobotState>("/nbv/set_init_robot_state");
-    setAttributedPointCloudServiceClient = n.serviceClient<next_best_view::SetAttributedPointCloud>("/nbv/set_point_cloud");
-    rateViewportsServiceClient = n.serviceClient<next_best_view::RateViewports>("/nbv/rate_viewports");
+    setInitRobotStateServiceClient = n.serviceClient<asr_next_best_view::SetInitRobotState>("/nbv/set_init_robot_state");
+    setAttributedPointCloudServiceClient = n.serviceClient<asr_next_best_view::SetAttributedPointCloud>("/nbv/set_point_cloud");
+    rateViewportsServiceClient = n.serviceClient<asr_next_best_view::RateViewports>("/nbv/rate_viewports");
 
     n.getParam("reorderPosesByNBV", reorderPosesByNBVParam);
     ROS_INFO_STREAM("Param: reorderPosesByNBV: " << reorderPosesByNBVParam);
@@ -212,7 +212,7 @@ bool DirectSearchManager::reorderPosesByNBV(const SearchedObjectTypes &searchedO
     bool success = true;
     success &= deleteAllRedundantPoses(posesToExplorePtr);
 
-    next_best_view::RateViewports rateViewports;
+    asr_next_best_view::RateViewports rateViewports;
     rateViewports.request.current_pose = poseHelperPtr->getCurrentCameraPose();
     rateViewports.request.object_type_name_list = searchedObjectTypes;
     rateViewports.request.use_object_type_to_rate = false;
@@ -245,7 +245,7 @@ bool DirectSearchManager::reorderPosesByNBV(const SearchedObjectTypes &searchedO
         return false;
     }
 
-    const std::vector<next_best_view::RatedViewport> &ratedViewports = rateViewports.response.sortedRatedViewports;
+    const std::vector<asr_next_best_view::RatedViewport> &ratedViewports = rateViewports.response.sortedRatedViewports;
 
     ROS_ASSERT_MSG(ratedViewports.size() == robotStatesToReorder->size(),
                    "The number of returned viewports from RateViewports were not equale, expect: %zu actual: %zu",
@@ -255,7 +255,7 @@ bool DirectSearchManager::reorderPosesByNBV(const SearchedObjectTypes &searchedO
 
     RobotStatePtrVecPtr reorderedRobotStates = RobotStatePtrVecPtr(new RobotStatePtrVec());
     for (unsigned int currentIndex = 0; currentIndex < ratedViewports.size(); ++currentIndex) {
-        const next_best_view::RatedViewport &currentRatedViewport = ratedViewports[currentIndex];
+        const asr_next_best_view::RatedViewport &currentRatedViewport = ratedViewports[currentIndex];
         ROS_ASSERT_MSG(poseHelperPtr->checkPosesAreApproxEquale(currentRatedViewport.pose,
                                                                 *(*robotStatesToReorder)[currentRatedViewport.oldIdx]->getTopPtuTuplePtr()->getCameraPosePtr(),
                        0.0001, 0.0001),
@@ -286,7 +286,7 @@ bool DirectSearchManager::reorderPosesByNBV(const SearchedObjectTypes &searchedO
             reorderedRobotStates->push_back(robotStatePtrToInsertCopy);
 
             robotStatePtrToInsert->getTopPtuTuplePtr()->addAlreadySearchedObjectTypes(currentRatedViewport.object_type_name_list);
-            robotStatePtrToInsert->getTopPtuTuplePtr()->setRatedViewport(next_best_view::RatedViewport());
+            robotStatePtrToInsert->getTopPtuTuplePtr()->setRatedViewport(asr_next_best_view::RatedViewport());
         }
     }
     ROS_DEBUG_STREAM("numberOfPosesWhereRatingIsNot0: " << numberOfPosesWhereRatingIsNot0);
@@ -335,7 +335,7 @@ bool DirectSearchManager::filterPosesDependingOnAlreadyFoundObjectTypes(const Ro
 }
 
 bool DirectSearchManager::setInitialRobotState() {
-    next_best_view::SetInitRobotState setInitRobotState;
+    asr_next_best_view::SetInitRobotState setInitRobotState;
     setInitRobotState.request.robotState.pan = currentPan;
     setInitRobotState.request.robotState.tilt = currentTilt;
 
@@ -356,7 +356,7 @@ void DirectSearchManager::ptuDriverStateCallback(const sensor_msgs::JointState::
 }
 
 bool DirectSearchManager::setPointCloudInNBV(const SearchedObjectTypesAndIds &searchedObjectTypesAndIds) {
-    next_best_view::SetAttributedPointCloud setAttributePointCloud;
+    asr_next_best_view::SetAttributedPointCloud setAttributePointCloud;
     bool success = getViewportsFromWorldModel(setAttributePointCloud.request.viewports_to_filter);
 
     ISM::TableHelperPtr table_helper = ISM::TableHelperPtr(new ISM::TableHelper(dbfilenameParam));

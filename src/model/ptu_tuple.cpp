@@ -27,11 +27,11 @@ PtuTuple::PtuTuple(int pan, int tilt, PosePtr cameraPosePtr, int deactivated_obj
 }
 
 PtuTuple::PtuTuple(int pan, int tilt, PosePtr cameraPosePtr, int deactivated_object_normals_count, SearchedObjectTypes already_searched_object_types) :
-    PtuTuple(pan, tilt, cameraPosePtr, deactivated_object_normals_count, already_searched_object_types, next_best_view::RatedViewport()){
+    PtuTuple(pan, tilt, cameraPosePtr, deactivated_object_normals_count, already_searched_object_types, asr_next_best_view::RatedViewport()){
 }
 
 PtuTuple::PtuTuple(int pan, int tilt, PosePtr cameraPosePtr, int deactivated_object_normals_count, SearchedObjectTypes already_searched_object_types,
-    next_best_view::RatedViewport ratedViewport) : pan(pan), tilt(tilt), cameraPosePtr(cameraPosePtr), deactivated_object_normals_count(deactivated_object_normals_count),
+    asr_next_best_view::RatedViewport ratedViewport) : pan(pan), tilt(tilt), cameraPosePtr(cameraPosePtr), deactivated_object_normals_count(deactivated_object_normals_count),
     already_searched_object_types(already_searched_object_types), ratedViewport(ratedViewport) {
 }
 
@@ -72,11 +72,11 @@ int PtuTuple::getDeactivatedObjectNormalsCount() const {
     return deactivated_object_normals_count;
 }
 
-void PtuTuple::setRatedViewport(const next_best_view::RatedViewport &newRatedViewport) {
+void PtuTuple::setRatedViewport(const asr_next_best_view::RatedViewport &newRatedViewport) {
     ratedViewport = newRatedViewport;
 }
 
-next_best_view::RatedViewport PtuTuple::getRatedViewport() const {
+asr_next_best_view::RatedViewport PtuTuple::getRatedViewport() const {
     return ratedViewport;
 }
 

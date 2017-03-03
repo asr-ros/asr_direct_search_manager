@@ -28,7 +28,7 @@
   <build_depend>asr_robot_model_services</build_depend>
   <build_depend>visualization_msgs</build_depend>
   <build_depend>asr_rapidxml</build_depend>
-  <build_depend>next_best_view</build_depend>
+  <build_depend>asr_next_best_view</build_depend>
   <build_depend>asr_lib_ism</build_depend>
   <build_depend>dynamic_reconfigure</build_depend>
   <build_depend>tf</build_depend>
@@ -49,7 +49,7 @@
   <run_depend>asr_robot_model_services</run_depend>
   <run_depend>visualization_msgs</run_depend>
   <run_depend>asr_rapidxml</run_depend>
-  <run_depend>next_best_view</run_depend>
+  <run_depend>asr_next_best_view</run_depend>
   <run_depend>asr_lib_ism</run_depend>
   <run_depend>dynamic_reconfigure</run_depend>
   <run_depend>tf</run_depend>
