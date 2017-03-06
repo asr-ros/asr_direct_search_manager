@@ -5,7 +5,7 @@
         <!-- Needed to get the pan_min_angle, pan_max_angle, tilt_min_angle and tilt_max_angle-->
         <rosparam file="$(find asr_flir_ptu_driver)/launch/ptu_properties.yaml"/>
         <!-- Needed to get the dbfilename -->
-        <rosparam file="$(find recognizer_prediction_ism)/launch/helpers/scene_recognition.yaml"/>
+        <rosparam file="$(find asr_recognizer_prediction_ism)/launch/helpers/scene_recognition.yaml"/>
         <param name="gridFilePath" value="$(find asr_direct_search_manager)/rsc/config.xml"/>
         <param name="initializedGridFilePath" value="$(find asr_direct_search_manager)/rsc/initializedGrid.xml"/>
         <param name="recordFilePath" value="$(find asr_direct_search_manager)/rsc/cropBoxWholeRoomRecording.xml"/>
