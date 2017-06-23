@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 2.4.6)
 project(asr_direct_search_manager)
 set(CMAKE_BUILD_TYPE Debug)
 
+if(COMMAND cmake_policy)
+  cmake_policy(SET CMP0003 NEW)
+endif(COMMAND cmake_policy)
+
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
 CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
@@ -34,7 +38,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 find_package(cmake_modules)
 find_package(Boost REQUIRED COMPONENTS system)
-find_package(Eigen REQUIRED)
+find_package(Eigen3 REQUIRED)
 
 generate_dynamic_reconfigure_options(rsc/DynamicParameters.cfg)
 
@@ -56,14 +60,14 @@ generate_messages(
 catkin_package(
    INCLUDE_DIRS include
    CATKIN_DEPENDS actionlib_msgs roscpp rospy std_msgs geometry_msgs message_generation message_runtime
-   DEPENDS system_lib
+   #DEPENDS system_lib
 )
 
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
-  ${Eigen_INCLUDE_DIRS}
+  ${Eigen3_INCLUDE_DIRS}
 )
 FILE(GLOB_RECURSE HEADERS "include/*.hpp"  "include/*.h")
 add_executable(${PROJECT_NAME}
