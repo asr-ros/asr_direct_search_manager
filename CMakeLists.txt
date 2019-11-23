@@ -30,6 +30,7 @@ find_package(catkin REQUIRED COMPONENTS
   visualization_msgs
   eigen_conversions
   tf
+  asr_msgs
   asr_rapidxml
   asr_robot_model_services
   asr_next_best_view
@@ -92,6 +93,7 @@ target_link_libraries(${PROJECT_NAME}
 add_dependencies(${PROJECT_NAME}
   ${direct_search_manager_EXPORTED_TARGETS}
   asr_robot_model_services_generate_messages_cpp
+  asr_msgs_generate_messages_cpp
 )
 
 
@@ -121,6 +123,7 @@ catkin_add_gtest(direct_search_manager_test
 add_dependencies(direct_search_manager_test
     ${direct_search_manager_EXPORTED_TARGETS}
     asr_robot_model_services_generate_messages_cpp
+    asr_msgs_generate_messages_cpp
 )
 target_link_libraries(direct_search_manager_test
   ${catkin_LIBRARIES}
